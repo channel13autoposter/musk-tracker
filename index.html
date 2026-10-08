@@ -184,13 +184,7 @@
   <div class="subscribe">
     <h3>Get Musk moves in your inbox</h3>
     <p>Daily digest. Major moves only. Free.</p>
-    <!-- BEEHIUV SLOT (Dom's signup tap pending): paste the Beehiiv embed code here,
-         replacing the localStorage form below. Keep the .note line. -->
-    <form id="sub-form" onsubmit="return subscribe(event)">
-      <input type="email" id="sub-email" placeholder="you@example.com" required aria-label="Email address">
-      <button type="submit">Subscribe</button>
-    </form>
-    <div class="success" id="sub-success">You're in. First digest lands tomorrow morning.</div>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="103c61bd-c160-4409-8f24-7d2e44ba17bd"></script>
     <div class="note">No spam. Unsubscribe anytime. 21+ only.</div>
   </div>
   <p style="margin-top:32px;">Musk Tracker — major moves only. Not affiliated with Elon Musk or his companies.</p>
@@ -203,25 +197,6 @@
 <script>
   document.getElementById('count').textContent =
     document.querySelectorAll('.entry').length;
-  function subscribe(e) {
-    e.preventDefault();
-    var email = document.getElementById('sub-email').value.trim();
-    if (!email) return false;
-    // Intent capture: log to localStorage until backend is wired.
-    // The musk-tracker-daily job harvests these on its next run.
-    // PRIVACY NOTE: Before wiring a real backend, add a privacy policy
-    // covering: what data is collected, how it's stored, retention period,
-    // unsubscribe mechanism, and 21+ age gating. Required before any
-    // email leaves the browser.
-    try {
-      var list = JSON.parse(localStorage.getItem('mt_subs') || '[]');
-      if (list.indexOf(email) === -1) { list.push(email); }
-      localStorage.setItem('mt_subs', JSON.stringify(list));
-    } catch (err) {}
-    document.getElementById('sub-form').style.display = 'none';
-    document.getElementById('sub-success').style.display = 'block';
-    return false;
-  }
 </script>
 </body>
 </html>
