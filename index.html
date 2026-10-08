@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musk Tracker — Every Move Elon Makes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #0a0a0a; color: #e8e8e8; line-height: 1.6;
+    padding: 0 16px 64px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  header { padding: 48px 0 24px; border-bottom: 1px solid #222; }
+  header h1 { font-size: 2rem; letter-spacing: -0.5px; }
+  header h1 .x { color: #888; font-weight: 400; }
+  header p { color: #888; margin-top: 8px; font-size: 0.95rem; }
+  .meta { color: #555; font-size: 0.8rem; margin-top: 16px; }
+  .goal {
+    margin-top: 12px; padding: 12px 16px;
+    background: #0d2818; border: 1px solid #14532d; border-radius: 6px;
+    color: #4ade80; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .subscribe {
+    margin-top: 24px; padding: 24px;
+    background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+    text-align: center;
+  }
+  .subscribe h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .subscribe p { color: #888; font-size: 0.9rem; margin-bottom: 16px; }
+  .subscribe form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto; }
+  .subscribe input[type="email"] {
+    flex: 1; padding: 10px 14px; border: 1px solid #333; border-radius: 6px;
+    background: #0a0a0a; color: #e8e8e8; font-size: 0.9rem;
+  }
+  .subscribe input[type="email"]:focus { outline: none; border-color: #4a9eff; }
+  .subscribe button {
+    padding: 10px 20px; border: none; border-radius: 6px;
+    background: #4a9eff; color: #fff; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .subscribe button:hover { background: #3a8eef; }
+  .subscribe .note { margin-top: 12px; color: #555; font-size: 0.78rem; }
+  .subscribe .success { display: none; color: #4ade80; font-weight: 600; margin-top: 12px; }
+  .entry {
+    padding: 24px 0; border-bottom: 1px solid #1a1a1a;
+  }
+  .entry .date {
+    font-size: 0.78rem; color: #666; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .entry h2 { font-size: 1.15rem; margin-bottom: 6px; line-height: 1.4; }
+  .entry .why { color: #aaa; font-size: 0.95rem; margin-bottom: 10px; }
+  .entry .why strong { color: #ccc; font-weight: 600; }
+  .entry a.src {
+    color: #4a9eff; font-size: 0.85rem; text-decoration: none;
+  }
+  .entry a.src:hover { text-decoration: underline; }
+  .tag {
+    display: inline-block; font-size: 0.72rem; padding: 2px 8px;
+    border-radius: 4px; margin-right: 6px; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .tag.x-post { background: #1a1a1a; color: #ccc; border: 1px solid #333; }
+  .tag.business { background: #0d2818; color: #4ade80; border: 1px solid #14532d; }
+  .tag.policy { background: #1e1b4b; color: #a5b4fc; border: 1px solid #3730a3; }
+  .tag.market { background: #2d1a0d; color: #fbbf24; border: 1px solid #92400e; }
+  footer { margin-top: 48px; color: #444; font-size: 0.8rem; text-align: center; }
+  footer a { color: #555; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>MUSK TRACKER <span class="x">/ elon</span></h1>
+  <p>Every major move Elon Musk makes — announcements, business plays, policy. Updated daily. Major moves only, no noise.</p>
+  <div class="meta">Last updated: <span id="updated">October 8, 2026</span> · <span id="count"></span> moves tracked</div>
+  <div class="goal">GOAL: $1,000,000/day passive into the bank account.</div>
+</header>
+
+<div id="feed">
+
+  <div class="entry">
+    <div class="date">October 8, 2026</div>
+    <span class="tag x-post">X Post</span>
+    <h2>Musk accuses Indian "oligarchs" of blocking Starlink; ministry denies bias</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk named no names and offered no evidence, but the clash lands hours before Modi opens India Mobile Congress — a public pressure play on a market Deloitte forecasts at $1.9B by 2030. India's telecom ministry fired back that approvals are fair and non-discriminatory.</div>
+    <a class="src" href="https://www.reuters.com/business/media-telecom/india-denies-bias-satellite-internet-approvals-after-musks-oligarchs-jab-2026-10-08/" target="_blank" rel="noopener">Reuters →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 7, 2026</div>
+    <span class="tag policy">Policy</span>
+    <h2>FCC grants Starlink approval for 15,000 more satellites</h2>
+    <div class="why"><strong>Why it matters:</strong> Regulatory green light for the Starlink Mobile service — 15,000 next-gen satellites cleared for launch, expanding SpaceX's orbital footprint in a single ruling.</div>
+    <a class="src" href="https://www.investors.com/news/spacex-stock-elon-musk-nvidia-ai-chips-40-billion-starlink-fcc-approval-cellular-grok-bot/" target="_blank" rel="noopener">Investor's Business Daily →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 7, 2026</div>
+    <span class="tag x-post">X Post</span>
+    <h2>"No, we will build and run the fab. Let there be ZERO doubt"</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk shut down speculation that TSMC would run Terafab — SpaceX/Tesla build and run it themselves; TSMC may only sublease part. Intel stays in as partner. The SI hardware stack stays in-house.</div>
+    <a class="src" href="https://www.lapost.com/content/intel-to-keep-working-on-musk-s-terafab-chipmaking-venture-bloomberg-news-reports" target="_blank" rel="noopener">LA Post / Bloomberg →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 7, 2026</div>
+    <span class="tag business">Business</span>
+    <h2>SpaceX in talks to raise $40B for Nvidia chips</h2>
+    <div class="why"><strong>Why it matters:</strong> ~$10B bank loans + ~$30B debt to fund the SI compute buildout — Musk is scaling intelligence infrastructure on borrowed money, not equity.</div>
+    <a class="src" href="https://www.reuters.com/business/media-telecom/spacex-seeks-40-billion-buy-nvidia-chips-ft-reports-2026-10-06/" target="_blank" rel="noopener">Reuters / FT →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 7, 2026</div>
+    <span class="tag business">Business</span>
+    <h2>Terafab chipmaking: Intel stays in, TSMC in talks</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk is shopping for a chip fab partner to build SI hardware at scale — whoever wins Terafab wins a piece of the superintelligence supply chain.</div>
+    <a class="src" href="https://www.reuters.com/business/media-telecom/intel-keep-working-musks-terafab-chipmaking-venture-bloomberg-news-reports-2026-10-07/" target="_blank" rel="noopener">Reuters / Bloomberg →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 7, 2026</div>
+    <span class="tag business">Business</span>
+    <h2>Tesla offers to rename FSD to "Tesla Assisted Driving" for EU approval</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk conceded the Full Self-Driving name misleads — a rare retreat to unlock the European market. Germany backs approval; vote pushed to December.</div>
+    <a class="src" href="https://www.reuters.com/business/musk-welcomes-german-backing-tesla-driver-assistance-tech-group-chases-eu-2026-10-07/" target="_blank" rel="noopener">Reuters →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 6, 2026</div>
+    <span class="tag market">Market</span>
+    <h2>Musk back over $1 trillion net worth</h2>
+    <div class="why"><strong>Why it matters:</strong> +$65B in a single day to $1.04T — SpaceX up 13% since Oct 1 on the SI repositioning. The market is pricing him as a superintelligence play, not a rocket company.</div>
+    <a class="src" href="https://www.moneyweb.co.za/news/tech/musk-is-a-trillionaire-again/" target="_blank" rel="noopener">Bloomberg via Moneyweb →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 5, 2026</div>
+    <span class="tag policy">Policy</span>
+    <h2>Trump announces "Super Intelligence Force"</h2>
+    <div class="why"><strong>Why it matters:</strong> Federal SI coordination body — Trump's move, but Musk is positioned at the center of it. Government and Musk's companies are converging on the same terminology and agenda.</div>
+    <a class="src" href="https://www.usatoday.com/story/news/politics/2026/10/04/jay-clayton-super-intelligence-force-ai/92089693007/" target="_blank" rel="noopener">USA Today / AP →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 4, 2026</div>
+    <span class="tag x-post">X Post</span>
+    <h2>"Yes, we will make that change" — SpaceXAI → SpaceXSI</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk confirmed on X that SpaceX's AI division will be renamed SpaceXSI. First major CEO to adopt Trump's SI terminology voluntarily. No timeline or filing yet — stated intent only.</div>
+    <a class="src" href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk on X →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 4, 2026</div>
+    <span class="tag x-post">X Post</span>
+    <h2>"No more AI. SI. It's better." / "SpaceX is a super intelligence company"</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk repositioned the entire company — not an AI division inside a rocket company, but a superintelligence company that also does rockets. The framing shift justifies a tech valuation.</div>
+    <a class="src" href="https://x.com/elonmusk" target="_blank" rel="noopener">@elonmusk on X →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">September 29, 2026</div>
+    <span class="tag policy">Policy</span>
+    <h2>White House Super Intelligence Accord — Musk signs</h2>
+    <div class="why"><strong>Why it matters:</strong> Musk stood alongside Zuckerberg, Pichai, Amodei, and Huang to sign Trump's SI accord. Voluntary, "morally binding" — but it puts Musk inside the tent on federal AI policy.</div>
+    <a class="src" href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/" target="_blank" rel="noopener">White House →</a>
+  </div>
+
+  <div class="entry">
+    <div class="date">September 29, 2026</div>
+    <span class="tag policy">Policy</span>
+    <h2>Trump signs EO "Inaugurating the Era of Super Intelligence"</h2>
+    <div class="why"><strong>Why it matters:</strong> Federal agencies must use "Super Intelligence"/"SI" instead of "AI." Voluntary for private companies — which makes Musk's adoption a choice, not compliance. The context for everything above.</div>
+    <a class="src" href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/" target="_blank" rel="noopener">Executive Order →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="subscribe">
+    <h3>Get Musk moves in your inbox</h3>
+    <p>Daily digest. Major moves only. Free.</p>
+    <form id="sub-form" onsubmit="return subscribe(event)">
+      <input type="email" id="sub-email" placeholder="you@example.com" required aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="success" id="sub-success">You're in. First digest lands tomorrow morning.</div>
+    <div class="note">No spam. Unsubscribe anytime. 21+ only.</div>
+  </div>
+  <p style="margin-top:32px;">Musk Tracker — major moves only. Not affiliated with Elon Musk or his companies.</p>
+  <p style="margin-top:8px;">Built by Dominick John Magliato.</p>
+  <p style="margin-top:8px;">Disclaimer: This is S.I.-generated content. Any brand names, logos, or trademarks that may appear are unintentional artifacts of the S.I. generation process. Musk Tracker is not affiliated with, endorsed by, or sponsored by any other brand.</p>
+  <p style="margin-top:8px;">Sources: X, Reuters, Bloomberg, AP, White House. Verify before acting.</p>
+</footer>
+
+</div>
+<script>
+  document.getElementById('count').textContent =
+    document.querySelectorAll('.entry').length;
+  function subscribe(e) {
+    e.preventDefault();
+    var email = document.getElementById('sub-email').value.trim();
+    if (!email) return false;
+    // Intent capture: log to localStorage until backend is wired.
+    // The musk-tracker-daily job harvests these on its next run.
+    // PRIVACY NOTE: Before wiring a real backend, add a privacy policy
+    // covering: what data is collected, how it's stored, retention period,
+    // unsubscribe mechanism, and 21+ age gating. Required before any
+    // email leaves the browser.
+    try {
+      var list = JSON.parse(localStorage.getItem('mt_subs') || '[]');
+      if (list.indexOf(email) === -1) { list.push(email); }
+      localStorage.setItem('mt_subs', JSON.stringify(list));
+    } catch (err) {}
+    document.getElementById('sub-form').style.display = 'none';
+    document.getElementById('sub-success').style.display = 'block';
+    return false;
+  }
+</script>
+</body>
+</html>
