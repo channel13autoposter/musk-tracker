@@ -8,11 +8,10 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; background: #0b0b10; color: #f2f2f5; padding: 28px 18px 40px; }
   .wrap { max-width: 520px; margin: 0 auto; }
+  .coverbtn { position: relative; display: block; width: 100%; border: 0; padding: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .cover { width: 100%; border-radius: 14px; display: block; }
-  h1 { font-size: 1.9rem; letter-spacing: .35em; text-align: center; margin-top: 22px; font-weight: 600; }
-  h2 { font-size: 2.1rem; text-align: center; margin-top: 6px; font-weight: 800; }
-  .label { text-align: center; color: #b9b9c7; margin-top: 6px; letter-spacing: .18em; font-size: .85rem; }
-  #playall { display: block; width: 100%; margin: 24px 0 6px; padding: 16px; font-size: 1.15rem; font-weight: 700; border: 0; border-radius: 999px; background: #e8c15a; color: #14100a; cursor: pointer; }
+  .badge { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: 84px; height: 84px; border-radius: 50%; background: rgba(232,193,90,.96); color: #14100a; font-size: 34px; line-height: 84px; text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.55); pointer-events: none; }
+  .tap { text-align: center; color: #b9b9c7; margin-top: 14px; font-size: .95rem; letter-spacing: .08em; }
   #now { text-align: center; color: #b9b9c7; min-height: 1.4em; margin: 10px 0 4px; font-size: .95rem; }
   audio { width: 100%; margin: 8px 0 18px; }
   ol { list-style: none; }
@@ -27,12 +26,12 @@
 </head>
 <body>
 <div class="wrap">
-  <img class="cover" src="https://ch4nnel13.com/cast-sweet-vivienne-laurent.jpg" alt="Vivienne Laurent — album cover">
-  <h1>VIVIENNE LAURENT</h1>
-  <h2>VIVIENNE'S ALBUM</h2>
-  <p class="label">CH4NNEL13📺 · 13 TRACKS</p>
-  <button id="playall" type="button">▶ Play the album</button>
-  <p id="now">Tap play — the whole album, in order. No downloads.</p>
+  <button class="coverbtn" id="coverbtn" type="button" aria-label="Play or pause the album">
+    <img class="cover" src="cover.jpg" alt="VIVIENNE'S ALBUM — album cover">
+    <span class="badge" id="badge">▶</span>
+  </button>
+  <p class="tap">TAP THE COVER TO PLAY</p>
+  <p id="now">The whole album, in order. No downloads.</p>
   <audio id="player" controls preload="none"></audio>
   <ol id="list"></ol>
   <footer>
@@ -58,6 +57,7 @@
   ];
   var player = document.getElementById('player');
   var now = document.getElementById('now');
+  var badge = document.getElementById('badge');
   var list = document.getElementById('list');
   var current = -1;
   tracks.forEach(function (t, i) {
@@ -66,16 +66,23 @@
     li.addEventListener('click', function () { play(i); });
     list.appendChild(li);
   });
+  function mark() {
+    var rows = list.children;
+    for (var k = 0; k < rows.length; k++) { rows[k].className = (k === current) ? 'playing' : ''; }
+  }
   function play(i) {
     current = i;
     player.src = tracks[i][2];
     player.play();
     now.textContent = 'Now playing: ' + (i + 1) + ' · ' + tracks[i][0] + ' — ' + tracks[i][1];
-    var rows = list.children;
-    for (var k = 0; k < rows.length; k++) { rows[k].className = (k === i) ? 'playing' : ''; }
-    document.getElementById('playall').textContent = '▶ Playing — tap a song to jump';
+    mark();
   }
-  document.getElementById('playall').addEventListener('click', function () { play(0); });
+  document.getElementById('coverbtn').addEventListener('click', function () {
+    if (current === -1) { play(0); return; }
+    if (player.paused) { player.play(); } else { player.pause(); }
+  });
+  player.addEventListener('play', function () { badge.textContent = '❚❚'; });
+  player.addEventListener('pause', function () { badge.textContent = '▶'; });
   player.addEventListener('ended', function () { if (current + 1 < tracks.length) { play(current + 1); } });
 </script>
 </body>
