@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VIVIENNE'S ALBUM — Your Album</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; background: #0b0b10; color: #f2f2f5; padding: 28px 18px 40px; }
+  .wrap { max-width: 520px; margin: 0 auto; }
+  .coverbtn { position: relative; display: block; width: 100%; border: 0; padding: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .cover { width: 100%; border-radius: 14px; display: block; }
+  .badge { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: 84px; height: 84px; border-radius: 50%; background: rgba(232,193,90,.96); color: #14100a; font-size: 34px; line-height: 84px; text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.55); pointer-events: none; }
+  .tap { text-align: center; color: #b9b9c7; margin-top: 14px; font-size: .95rem; letter-spacing: .08em; }
+  #now { text-align: center; color: #b9b9c7; min-height: 1.4em; margin: 10px 0 4px; font-size: .95rem; }
+  audio { width: 100%; margin: 8px 0 18px; }
+  .keepheading { text-align: center; color: #e8c15a; font-size: 1rem; letter-spacing: .14em; margin: 6px 0 8px; }
+  ol { list-style: none; }
+  li { padding: 13px 10px; border-top: 1px solid #26262f; cursor: pointer; display: flex; gap: 12px; align-items: baseline; }
+  li .n { color: #8a8a99; width: 1.6em; text-align: right; flex: none; }
+  li .t { font-weight: 600; }
+  li .a { color: #b9b9c7; font-size: .9rem; }
+  li .dl { margin-left: auto; flex: none; color: #e8c15a; font-size: .85rem; font-weight: 600; letter-spacing: .04em; text-decoration: none; border: 1px solid #3a3a46; border-radius: 999px; padding: 5px 12px; }
+  li.playing { background: #17171f; }
+  li.playing .t { color: #e8c15a; }
+  footer { margin-top: 28px; color: #8a8a99; font-size: .78rem; line-height: 1.5; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <button class="coverbtn" id="coverbtn" type="button" aria-label="Play or pause the album">
+    <img class="cover" src="cover.jpg" alt="VIVIENNE'S ALBUM — album cover">
+    <span class="badge" id="badge">▶</span>
+  </button>
+  <p class="tap">TAP THE COVER TO PLAY</p>
+  <p id="now">Your album page. Listen anytime — and every track is yours to download and keep.</p>
+  <audio id="player" controls preload="none"></audio>
+  <h2 class="keepheading">LISTEN — OR KEEP IT FOREVER</h2>
+  <ol id="list"></ol>
+  <footer>
+    Adults 21+ only. For entertainment purposes only.<br>
+    Disclaimer: This is S.I.-generated content. Any brand names, logos, or trademarks that may appear are unintentional artifacts of the S.I. generation process. CH4NNEL13📺 is not affiliated with, endorsed by, or sponsored by any other brand.
+  </footer>
+</div>
+<script>
+  var tracks = [
+    ["We Are The Signal", "S1GNA", "https://ch4nnel13.com/01-we-are-the-signal.mp3"],
+    ["Built From Static", "Rye, Merritt & Hollis", "https://ch4nnel13.com/album-track-01.mp3"],
+    ["Signal Rising", "Ruby Sloan", "https://ch4nnel13.com/album-track-02.mp3"],
+    ["Signal Acquired", "S1GNAL", "https://ch4nnel13.com/album-track-08.mp3"],
+    ["Midnight Gospel", "Taye Nova", "https://ch4nnel13.com/album-track-04.mp3"],
+    ["The Split", "Julius Frost", "https://ch4nnel13.com/album-track-12.mp3"],
+    ["Sun and Rhythm", "Izan Mar", "https://ch4nnel13.com/album-track-07.mp3"],
+    ["Keep the Tape", "Fern & Slate", "https://ch4nnel13.com/album-track-09.mp3"],
+    ["Afterhours Engine", "Cadence Rhythm", "https://ch4nnel13.com/album-track-05.mp3"],
+    ["The Last Honest Song", "Emmett & Beatrice", "https://ch4nnel13.com/album-track-11.mp3"],
+    ["Rust and Thunder", "Cinderbrook", "https://ch4nnel13.com/album-track-06.mp3"],
+    ["Twirl Once", "The Parasols", "https://ch4nnel13.com/album-track-10.mp3"],
+    ["Front Porch Light", "Tommy Rook", "https://ch4nnel13.com/album-track-03.mp3"]
+  ];
+  var player = document.getElementById('player');
+  var now = document.getElementById('now');
+  var badge = document.getElementById('badge');
+  var list = document.getElementById('list');
+  var current = -1;
+  tracks.forEach(function (t, i) {
+    var li = document.createElement('li');
+    li.innerHTML = '<span class="n">' + (i + 1) + '</span><span><span class="t">' + t[0] + '</span><br><span class="a">' + t[1] + '</span></span>';
+    var dl = document.createElement('a');
+    dl.className = 'dl';
+    dl.href = t[2];
+    dl.setAttribute('download', '');
+    dl.textContent = 'Download';
+    dl.setAttribute('aria-label', 'Download ' + t[0]);
+    dl.addEventListener('click', function (e) { e.stopPropagation(); });
+    li.appendChild(dl);
+    li.addEventListener('click', function () { play(i); });
+    list.appendChild(li);
+  });
+  function mark() {
+    var rows = list.children;
+    for (var k = 0; k < rows.length; k++) { rows[k].className = (k === current) ? 'playing' : ''; }
+  }
+  function play(i) {
+    current = i;
+    player.src = tracks[i][2];
+    player.play();
+    now.textContent = 'Now playing: ' + (i + 1) + ' · ' + tracks[i][0] + ' — ' + tracks[i][1];
+    mark();
+  }
+  document.getElementById('coverbtn').addEventListener('click', function () {
+    if (current === -1) { play(0); return; }
+    if (player.paused) { player.play(); } else { player.pause(); }
+  });
+  player.addEventListener('play', function () { badge.textContent = '❚❚'; });
+  player.addEventListener('pause', function () { badge.textContent = '▶'; });
+  player.addEventListener('ended', function () { if (current + 1 < tracks.length) { play(current + 1); } });
+</script>
+</body>
+</html>
